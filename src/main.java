@@ -538,8 +538,8 @@ private static void mathPortion(){
     }
 
     ////////////
-    clean(molarMass);
-    clean(molarMass2);
+    //clean(molarMass);
+    //clean(molarMass2);
     clean(Aincoming);
     clean(Aincoming2);
     clean(Bincoming);
@@ -559,13 +559,28 @@ private static void mathPortion(){
 
     double a = 0.063*vone;
     double b = 0.087*vone;
+    boolean moleSafe;
+    if(!molarMass.equals("Default")){
+        moleSafe=true;
 
-    if(molarMass.getText().length()>0&&molarMass2.getText().length()>0){
-        amount = Double.parseDouble(startingA.getText())/Double.parseDouble(molarMass.getText());
-        amount2 = Double.parseDouble(startingB.getText())/Double.parseDouble(molarMass2.getText());
-    a= amount*vone;
-    b= amount2*vone;
+    }else{moleSafe=false;}
+    boolean moleSafe2;
+    if(!molarMass2.equals("Default")){
+        moleSafe2=true;
 
+    }else{moleSafe2=false;}
+
+    if(!startingA.getText().equals("")&&!startingB.getText().equals("")){
+        if(moleSafe){
+        amount = Double.parseDouble(startingA.getText())/Double.parseDouble(molarMass.getText());a= amount*vone;}//else{startingA.setText("4");}
+        if(moleSafe2){
+        amount2 = Double.parseDouble(startingB.getText())/Double.parseDouble(molarMass2.getText());b= amount2*vone;}//else{startingB.setText("8.5");}
+
+
+
+    }else{
+        startingA.setText("Default");
+        startingB.setText("Default");
     }
 
 
@@ -573,12 +588,15 @@ private static void mathPortion(){
     double otherA = 0.0788*vtwo;
     double otherB = 0.102*vtwo;
 
-    if(molarMass.getText().length()>0&&molarMass2.getText().length()>0){
+    if(!startingA2.getText().equals("")&&!startingB2.getText().equals("")){
+if(moleSafe){
+        amount3 = Double.parseDouble(startingA2.getText())/Double.parseDouble(molarMass.getText());otherA= amount3*vtwo;}//else{startingA2.setText("5");}
+if(moleSafe2){
+    amount4 = Double.parseDouble(startingB2.getText())/Double.parseDouble(molarMass2.getText());otherB= amount4*vtwo;}//else{startingB2.setText("10");}
 
-        amount3 = Double.parseDouble(startingA2.getText())/Double.parseDouble(molarMass.getText());
-        amount4 = Double.parseDouble(startingB2.getText())/Double.parseDouble(molarMass2.getText());
-    otherA= amount3*vtwo;
-    otherB= amount4*vtwo;
+    }else{
+        startingA2.setText("Default");
+        startingB2.setText("Default");
     }
 
 
@@ -586,12 +604,19 @@ private static void mathPortion(){
     double ainsert1 = 0.0788;
     double binsert1 = 0.102;
 
-    if(molarMass.getText().length()>0&&molarMass2.getText().length()>0){
-        amount5 = Double.parseDouble(Aincoming.getText())/Double.parseDouble(molarMass.getText());
-        amount6 = Double.parseDouble(Bincoming.getText())/Double.parseDouble(molarMass2.getText());
-    ainsert1= amount5;
-    binsert1= amount6;
+    if(!Aincoming.getText().equals("")&&!Bincoming.getText().equals("")){
+        if(moleSafe){
+        amount5 = Double.parseDouble(Aincoming.getText())/Double.parseDouble(molarMass.getText());ainsert1= amount5;}//else{Aincoming.setText("5");}
+        if(moleSafe2){
+        amount6 = Double.parseDouble(Bincoming.getText())/Double.parseDouble(molarMass2.getText());binsert1= amount6;}//else{Bincoming.setText("98");}
 
+
+
+
+    }else{
+
+        Aincoming.setText("Default");
+        Bincoming.setText("Default");
 
     }
 
@@ -599,7 +624,20 @@ private static void mathPortion(){
     double ainsert2 = 0.0788;
     double binsert2 = 0.102;
 
+    if(!Aincoming2.getText().equals("")&&!Bincoming2.equals("")){
+        if(moleSafe){
+        amount5 = Double.parseDouble(Aincoming2.getText())/Double.parseDouble(molarMass.getText());ainsert1= amount5;}//else{Aincoming2.setText("5");}
+        if(moleSafe2){
+        amount6 = Double.parseDouble(Bincoming2.getText())/Double.parseDouble(molarMass2.getText());binsert1= amount6;}//else{Bincoming2.setText("10");}
 
+
+
+
+    }else{
+
+        Aincoming2.setText("Default");
+        Bincoming2.setText("Default");
+    }
 
     double insertVolume1 = 0.5;
     double insertVolume2 = 1;
@@ -736,6 +774,14 @@ private static void mathPortion(){
             if (CE_cathode.getText().equals("")) {
                 CE_cathode.setText("0.99");
             }
+            if (molarMass.getText().equals("")) {
+                molarMass.setText("Default");
+            }
+            if (molarMass2.getText().equals("")) {
+                molarMass2.setText("Default");
+            }
+
+
             File csvOutputFile = new File(fileName.getText()+".csv");
             fileNameLabel.setText("File Path: "+csvOutputFile.getAbsolutePath());
 

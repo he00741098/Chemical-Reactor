@@ -1,4 +1,4 @@
 Progress
 -
-Can calculate the numbers correctly
-Currrently working on a user interface
+- Can calculate the numbers correctly
+- Currrently working on a user interface
